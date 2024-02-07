@@ -5,7 +5,7 @@ on:
   - pull_request
 
 jobs:
-  cache-and-install:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -40,7 +40,7 @@ jobs:
         run: pnpm install
 
       - name: Build project
-        run: pnpm run build
+        run: npm run build
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v2
