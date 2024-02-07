@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 import ReactFlow, {
   Controls,
   Background,
-  applyNodeChanges,
+  //   applyNodeChanges,
   applyEdgeChanges,
   addEdge,
 } from "reactflow";
@@ -17,7 +17,7 @@ const initialNodes = [
     data: { value: 123 },
   },
   {
-    id: "node-1",
+    id: "node-2", // Changed id to node-2
     type: "textUpdater",
     position: { x: 0, y: 0 },
     data: { value: 123 },
@@ -27,13 +27,9 @@ const initialNodes = [
 const initialEdges: any[] | (() => any[]) = [];
 
 function Flow() {
-  const [nodes, setNodes] = useState(initialNodes);
+  const [nodes] = useState(initialNodes);
   const [edges, setEdges] = useState(initialEdges);
 
-  const onNodesChange = useCallback(
-    (changes: any) => setNodes((nds) => applyNodeChanges(changes, nds)),
-    []
-  );
   const onEdgesChange = useCallback(
     (changes: any) => setEdges((eds) => applyEdgeChanges(changes, eds)),
     []
@@ -47,7 +43,7 @@ function Flow() {
     <div style={{ height: "100%" }}>
       <ReactFlow
         nodes={nodes}
-        onNodesChange={onNodesChange}
+        // onNodesChange={onNodesChange}
         edges={edges}
         onEdgesChange={onEdgesChange}
         fitView
