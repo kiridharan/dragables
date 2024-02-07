@@ -1,7 +1,6 @@
 import "reactflow/dist/style.css";
 import Flow from "./Components/Canvas";
 import Layout from "antd/es/layout/layout";
-import { Menu, MenuProps } from "antd";
 import Sider from "antd/es/layout/Sider";
 
 const items = [
