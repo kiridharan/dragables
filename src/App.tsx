@@ -2,6 +2,7 @@ import "reactflow/dist/style.css";
 import Flow from "./Components/Canvas";
 import Layout from "antd/es/layout/layout";
 import Sider from "antd/es/layout/Sider";
+import { Button, Space } from "antd";
 
 const items = [
   {
@@ -31,22 +32,45 @@ function App() {
       <Sider collapsed={false} color="light">
         <div className="demo-logo-vertical" />
 
-        {items.map((item) => (
-          <div
-            style={{
-              padding: "16px",
-              fontSize: "14px",
-              fontWeight: "bold",
-              color: "white",
-              borderBottom: "1px solid #f0f0f0",
-            }}
-            key={item.key}
-            onDragStart={(event) => onDragStart(event, item.label)}
-            draggable
-          >
-            {item.label.toUpperCase()}
-          </div>
-        ))}
+        <Space
+          size={[8, 16]}
+          wrap
+          direction="vertical"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            alignContent: "center",
+            padding: "2rem",
+          }}
+        >
+          {items.map((item) => (
+            <>
+              <Button
+                style={{
+                  paddingLeft: "0.5rem",
+                  width: "12rem", // Adjust width to your preference
+                  height: "40px", // Adjust height to your preference
+                  fontWeight: "bold",
+                  color: "black",
+                  border: "2px dashed black", // Adjust border thickness and color
+                  borderRadius: "5px",
+                  display: "flex", // Use flexbox to center text vertically and horizontally
+                  alignItems: "center",
+                  justifyContent: "center",
+                  margin: "auto", // Center
+                }}
+                type="dashed"
+                key={item.key}
+                onDragStart={(event) => onDragStart(event, item.label)}
+                draggable
+              >
+                {item.label.toUpperCase()}
+              </Button>
+            </>
+          ))}
+        </Space>
       </Sider>
       <Layout>
         <Flow />
