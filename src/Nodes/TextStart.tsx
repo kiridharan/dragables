@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { Handle, NodeResizer, Position } from "reactflow";
+import { Handle, Position } from "reactflow";
 import { Input } from "antd";
 import { HandleStyle } from "../Constant/StyleConstant";
 
