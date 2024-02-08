@@ -2,30 +2,36 @@ import { useState, useCallback } from "react";
 import ReactFlow, {
   Controls,
   Background,
-  //   applyNodeChanges,
   applyEdgeChanges,
   addEdge,
   useNodesState,
-  ControlButton,
+  ReactFlowInstance,
+  applyNodeChanges,
 } from "reactflow";
 import "reactflow/dist/style.css";
 import { nodeTypes } from "../NodeTypes/NodeTypes";
-import { SunIcon } from "@radix-ui/react-icons";
 const initialNodes = [
   {
-    id: "node-1",
+    id: "1",
     type: "textUpdater",
-    position: { x: 0, y: 0 },
-    data: { value: 123 },
+    data: { label: "input node" },
+    position: { x: 250, y: 5 },
   },
 ];
 
 const initialEdges: any[] | (() => any[]) = [];
 
 function Flow() {
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [nodes, setNodes] = useNodesState(initialNodes);
   const [edges, setEdges] = useState(initialEdges);
 
+  const onNodesChange = useCallback(
+    (changes: any) => setNodes((nds) => applyNodeChanges(changes, nds)),
+    []
+  );
+
+  const [reactFlowInstance, setReactFlowInstance] =
+    useState<ReactFlowInstance | null>(null);
   const onEdgesChange = useCallback(
     (changes: any) => setEdges((eds) => applyEdgeChanges(changes, eds)),
     []
@@ -39,24 +45,40 @@ function Flow() {
   const onDrop = useCallback(
     (event: any) => {
       event.preventDefault();
+
       const type = event.dataTransfer.getData("application/reactflow");
-      console.log(type);
-      const position = { x: event.clientX, y: event.clientY }; // Adjust position as needed
+
+      // check if the dropped element is valid
+      if (typeof type === "undefined" || !type) {
+        return;
+      }
+
+      if (!reactFlowInstance) {
+        console.log("No reactFlowInstance");
+        return;
+      }
+
+      const position = reactFlowInstance.screenToFlowPosition({
+        x: event.clientX,
+        y: event.clientY,
+      });
+
+      console.log(position);
       const newNode = {
-        id: `node-${initialNodes.length + 1}`, // Generate unique ID
+        id: Date.now().toString(),
         type,
         position,
-        data: { value: 123 },
+        data: { label: `${type} node` },
       };
-      console.log(newNode);
+
       setNodes((nds: any) => nds.concat(newNode));
-      onNodesChange;
     },
-    [initialNodes]
+    [reactFlowInstance, initialNodes]
   );
 
   const onDragOver = useCallback((event: any) => {
     event.preventDefault();
+    event.dataTransfer.dropEffect = "move";
   }, []);
   return (
     <div style={{ height: "100%" }}>
@@ -70,15 +92,11 @@ function Flow() {
         nodeTypes={nodeTypes}
         onDrop={onDrop}
         onDragOver={onDragOver}
+        onNodesChange={onNodesChange}
+        onInit={(reactFlowInstance) => setReactFlowInstance(reactFlowInstance)}
       >
         <Background />
-        <Controls>
-          <ControlButton
-            onClick={() => alert("Something magical just happened. ✨")}
-          >
-            <SunIcon />
-          </ControlButton>
-        </Controls>
+        <Controls />
       </ReactFlow>
     </div>
   );

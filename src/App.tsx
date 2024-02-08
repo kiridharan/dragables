@@ -2,7 +2,7 @@ import "reactflow/dist/style.css";
 import Flow from "./Components/Canvas";
 import Layout from "antd/es/layout/layout";
 import Sider from "antd/es/layout/Sider";
-import { Button, Space } from "antd";
+import { Space } from "antd";
 import ButtonDrag from "./Components/Button";
 
 const items = [
