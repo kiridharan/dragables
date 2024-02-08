@@ -40,6 +40,7 @@ function App() {
               color: "white",
               borderBottom: "1px solid #f0f0f0",
             }}
+            key={item.key}
             onDragStart={(event) => onDragStart(event, item.label)}
             draggable
           >

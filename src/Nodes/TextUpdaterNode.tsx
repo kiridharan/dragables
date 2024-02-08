@@ -31,7 +31,7 @@ function TextUpdaterNode({ isConnectable }: { isConnectable: boolean }) {
             onChange={onChange}
             style={{ border: "none", textAlign: "center" }}
           /> */}
-          <h1>Kiridharan</h1>
+          <h1>Input Text</h1>
           <Input placeholder="Basic usage" onChange={onChange} />
           <Space size={1} />
           <Input placeholder="Basic usage" onChange={onChange} />
