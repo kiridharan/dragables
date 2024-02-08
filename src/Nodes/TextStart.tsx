@@ -1,15 +1,16 @@
 import { useCallback } from "react";
 import { Handle, NodeResizer, Position } from "reactflow";
 import { Input } from "antd";
+import { HandleStyle } from "../Constant/StyleConstant";
 
-function TextUpdaterNode({ isConnectable }: { isConnectable: boolean }) {
+function TextStartNode({ isConnectable }: { isConnectable: boolean }) {
   const onChange = useCallback((evt: any) => {
     console.log(evt.target.value);
   }, []);
 
   return (
     <>
-      <NodeResizer maxHeight={60} maxWidth={180} />
+      {/* <NodeResizer maxHeight={60} maxWidth={180} /> */}
       <div
         style={{
           border: "1px solid #eee",
@@ -20,19 +21,6 @@ function TextUpdaterNode({ isConnectable }: { isConnectable: boolean }) {
           minHeight: 40,
         }}
       >
-        <Handle
-          type="target"
-          position={Position.Top}
-          isConnectable={isConnectable}
-          style={{
-            backgroundColor: "#784be8",
-            width: "30px",
-            height: "14px",
-            borderRadius: "3px",
-            bottom: "-10px",
-          }}
-        />
-
         <Input
           placeholder="Text"
           onChange={onChange}
@@ -50,17 +38,11 @@ function TextUpdaterNode({ isConnectable }: { isConnectable: boolean }) {
           position={Position.Bottom}
           id="b"
           isConnectable={isConnectable}
-          style={{
-            backgroundColor: "#784be8",
-            width: "30px",
-            height: "14px",
-            borderRadius: "3px",
-            bottom: "-10px",
-          }}
+          style={HandleStyle}
         />
       </div>
     </>
   );
 }
 
-export default TextUpdaterNode;
+export default TextStartNode;

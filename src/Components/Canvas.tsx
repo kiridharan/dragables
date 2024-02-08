@@ -10,14 +10,7 @@ import ReactFlow, {
 } from "reactflow";
 import "reactflow/dist/style.css";
 import { nodeTypes } from "../NodeTypes/NodeTypes";
-const initialNodes = [
-  {
-    id: "1",
-    type: "text",
-    data: { label: "input node" },
-    position: { x: 250, y: 5 },
-  },
-];
+const initialNodes: any[] = [];
 
 const initialEdges: any[] | (() => any[]) = [];
 

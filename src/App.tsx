@@ -4,21 +4,7 @@ import Layout from "antd/es/layout/layout";
 import Sider from "antd/es/layout/Sider";
 import { Space } from "antd";
 import ButtonDrag from "./Components/Button";
-
-const items = [
-  {
-    key: "1",
-    label: "text",
-  },
-  {
-    key: "2",
-    label: "input",
-  },
-  {
-    key: "3",
-    label: "output",
-  },
-];
+import { SideBarItems } from "./Constant/NodeSideBar";
 
 function App() {
   const onDragStart = (event: any, nodeType: any) => {
@@ -30,7 +16,7 @@ function App() {
     // <div style={{ height: "100%" }}>
     // </div>
     <Layout style={{ minHeight: "100vh", backgroundColor: "white" }}>
-      <Sider collapsed={false} color="light">
+      <Sider collapsed={false} theme="light">
         <div className="demo-logo-vertical" />
 
         <Space
@@ -46,7 +32,7 @@ function App() {
             padding: "2rem",
           }}
         >
-          {items.map((item) => (
+          {SideBarItems.map((item: any) => (
             <>
               <ButtonDrag item={item} onDragStart={onDragStart} />
             </>

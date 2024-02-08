@@ -1,8 +1,9 @@
 import { Button } from "antd";
 import React from "react";
+import { Items } from "../interface/Items";
 
 interface ButtonDragProps {
-  item: any;
+  item: Items;
   onDragStart: (event: any, nodeType: any) => void;
 }
 
@@ -27,7 +28,7 @@ const ButtonDrag: React.FC<ButtonDragProps> = ({ item, onDragStart }) => {
       onDragStart={(event) => onDragStart(event, item.label)}
       draggable
     >
-      {item.label.toUpperCase()}
+      {item.title.toUpperCase()}
     </Button>
   );
 };
