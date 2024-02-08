@@ -8,7 +8,7 @@ import ButtonDrag from "./Components/Button";
 const items = [
   {
     key: "1",
-    label: "Text Updater",
+    label: "text",
   },
   {
     key: "2",

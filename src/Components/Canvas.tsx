@@ -13,7 +13,7 @@ import { nodeTypes } from "../NodeTypes/NodeTypes";
 const initialNodes = [
   {
     id: "1",
-    type: "textUpdater",
+    type: "text",
     data: { label: "input node" },
     position: { x: 250, y: 5 },
   },
